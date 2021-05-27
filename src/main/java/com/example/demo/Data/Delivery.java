@@ -3,14 +3,12 @@ package com.example.demo.Data;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-public class delivery {
+public class Delivery {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,6 +19,9 @@ public class delivery {
     private LocalDateTime deliveryTime;
     @Type(type = "yes_no")
     private Boolean completed;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery")
+    private List<Plant> plants;
 
     public void setId(Long id) {
         this.id = id;

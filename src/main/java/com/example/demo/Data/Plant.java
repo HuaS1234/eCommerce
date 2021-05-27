@@ -6,16 +6,19 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "plant")
-public class inventory {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Plant {
     @Id
     @GeneratedValue
     private Long id;
     @Nationalized
     private String name;
-    private String color;
     @Column(precision = 12, scale = 4)
     private BigDecimal price; // BigDecimal is the standard Java class for currency math
+
+    @ManyToOne
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
 
     public Long getId() {
         return id;
@@ -25,12 +28,12 @@ public class inventory {
         return name;
     }
 
-    public String getColor() {
-        return color;
-    }
-
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
     }
 
     public void setId(Long id) {
@@ -40,12 +43,11 @@ public class inventory {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 }

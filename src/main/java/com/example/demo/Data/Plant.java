@@ -1,5 +1,6 @@
 package com.example.demo.Data;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
@@ -11,8 +12,12 @@ public class Plant {
     @Id
     @GeneratedValue
     private Long id;
+
+    @JsonView(Views.Public.class)
     @Nationalized
     private String name;
+
+    @JsonView(Views.Public.class)
     @Column(precision = 12, scale = 4)
     private BigDecimal price; // BigDecimal is the standard Java class for currency math
 

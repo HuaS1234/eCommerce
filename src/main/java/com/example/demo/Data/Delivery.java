@@ -20,7 +20,8 @@ public class Delivery {
     @Type(type = "yes_no")
     private Boolean completed;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery")
+    // added CascadeType.REMOVE to automatically clear any associated plants when removed
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery", cascade = CascadeType.REMOVE)
     private List<Plant> plants;
 
     public void setId(Long id) {

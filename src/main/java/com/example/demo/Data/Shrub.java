@@ -11,6 +11,11 @@ public class Shrub {
         return heightCm;
     }
 
+    public Shrub(int heightCm, int widthCm) {
+        this.heightCm = heightCm;
+        this.widthCm = widthCm;
+    }
+
     public int getWidthCm() {
         return widthCm;
     }
